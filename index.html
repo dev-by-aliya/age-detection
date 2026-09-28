@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><title>ageguesser — Free AI Guess My Age Tool | How Old Do I Look?</title><meta name="description" content="ageguesser is a free AI guess-my-age tool. Upload a selfie and get your estimated face age in seconds. 100% private — your photo never leaves your device. No sign-up."/><meta property="og:title" content="ageguesser — Free AI Guess My Age Tool"/><meta property="og:description" content="Upload a selfie, let AI guess your age in seconds. Free, instant, 100% private."/><meta property="og:type" content="website"/><meta content="web_standard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}html{scroll-behavior:smooth;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}section[id]{scroll-margin-top:5.5rem;}}::-webkit-scrollbar{display:none;}</style><link rel="stylesheet" href="styles.css"/><script src="js/face-api.js" defer></script><link rel="icon" type="image/svg+xml" href="assets/favicon.svg"/><link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png"/><link rel="apple-touch-icon" href="assets/apple-touch-icon.png"/></head><body class="bg-surface font-body-md text-on-surface antialiased selection:bg-primary-fixed selection:text-on-primary-fixed"><header class="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-inverse-surface/85 border-b border-outline-variant/20"><div class="h-20 max-w-7xl mx-auto px-margin flex items-center justify-between gap-gutter"><div class="flex items-center gap-space-sm"><a href="#" class="flex items-center gap-space-sm" aria-label="ageguesser home"><svg viewBox="0 0 64 64" class="h-9 w-9" fill="none" role="img" aria-label="ageguesser logo"><path d="M10 22 V13 Q10 10 13 10 H22" stroke="#06b6d4" stroke-width="4" stroke-linecap="round"/><path d="M42 10 H51 Q54 10 54 13 V22" stroke="#06b6d4" stroke-width="4" stroke-linecap="round"/><path d="M54 42 V51 Q54 54 51 54 H42" stroke="#06b6d4" stroke-width="4" stroke-linecap="round"/><path d="M22 54 H13 Q10 54 10 51 V42" stroke="#06b6d4" stroke-width="4" stroke-linecap="round"/><circle cx="32" cy="32" r="12.5" stroke="#ffffff" stroke-width="4"/><circle cx="27.5" cy="30" r="2.6" fill="#ffffff" stroke="none"/><circle cx="36.5" cy="30" r="2.6" fill="#ffffff" stroke="none"/><path d="M27 37 Q32 41 37 37" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/></svg><span class="font-headline-sm text-headline-sm text-on-secondary tracking-tight">ageguesser</span></a></div><nav class="hidden lg:flex items-center gap-space-xs" data-active-classes="bg-secondary-container text-on-secondary-container font-semibold rounded-full"><a class="px-space-md py-space-xs rounded-full font-label-lg text-label-lg text-inverse-on-surface hover:text-primary-fixed transition-colors duration-200" data-path="how-it-works" href="#how-it-works">How it works</a><a class="px-space-md py-space-xs rounded-full font-label-lg text-label-lg text-inverse-on-surface hover:text-primary-fixed transition-colors duration-200" data-path="features" href="#features">Features</a><a class="px-space-md py-space-xs rounded-full font-label-lg text-label-lg text-inverse-on-surface hover:text-primary-fixed transition-colors duration-200" data-path="accuracy" href="#accuracy">Accuracy</a><a class="px-space-md py-space-xs rounded-full font-label-lg text-label-lg text-inverse-on-surface hover:text-primary-fixed transition-colors duration-200" data-path="use-cases" href="#use-cases">Use cases</a><a class="px-space-md py-space-xs rounded-full font-label-lg text-label-lg text-inverse-on-surface hover:text-primary-fixed transition-colors duration-200" data-path="faq" href="#faq">FAQ</a></nav><div class="flex items-center gap-space-md"><a class="inline-flex items-center justify-center px-space-lg py-space-xs rounded-full bg-gradient-to-r from-secondary to-primary-container text-on-secondary font-label-lg text-label-lg shadow-[0_0_20px_rgba(75,65,225,0.4)] hover:shadow-[0_0_28px_rgba(6,182,212,0.6)] transition-all duration-300" data-path="estimator" href="#demo-viewport">Try it free</a><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="w-full pt-20 bg-surface min-h-[calc(100vh-20rem)]"><div class="flex flex-col w-full">
+<!-- Subtle Meta Bar & Breadcrumb Hint -->
+<div class="w-full bg-inverse-surface text-inverse-on-surface/75 py-2 px-margin text-center font-label-md text-label-md tracking-wider border-b border-outline-variant/10">
+<span class="inline-flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container animate-pulse"></span>
+      ageguesser — Free AI Guess My Age Tool | How Old Do I Look? Upload a selfie and let AI guess your age in seconds. 100% private, in-browser analysis.
+    </span>
+</div>
+<!-- SECTION 1: HERO SECTION -->
+<section class="relative w-full bg-inverse-surface text-inverse-on-surface overflow-hidden py-16 lg:py-24">
+<!-- Ambient Glow Orbs -->
+<div class="pointer-events-none absolute -top-40 -left-40 w-96 h-96 rounded-full bg-secondary/30 blur-3xl"></div>
+<div class="pointer-events-none absolute top-1/2 right-0 w-[32rem] h-[32rem] rounded-full bg-primary-container/20 blur-[120px]"></div>
+<div class="max-w-7xl mx-auto px-margin relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center">
+<!-- Left Column: Copy & CTAs -->
+<div class="lg:col-span-7 flex flex-col gap-space-md">
+<!-- Model Badge -->
+<div class="inline-flex items-center gap-space-xs px-space-md py-1 rounded-full bg-surface-variant/10 backdrop-blur-md border border-primary-container/30 text-primary-fixed w-fit">
+<span class="material-symbols-outlined text-[18px] text-primary-container" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="font-label-md text-label-md uppercase tracking-wider">100% In-Browser AI • Zero Uploads</span>
+</div>
+<!-- Single H1 Semantic Tag -->
+<h1 class="font-display-hero text-display-hero-mobile lg:text-display-hero text-on-secondary leading-tight tracking-tight">
+            AI Guess My Age Tool — Discover <span class="bg-gradient-to-r from-secondary to-primary-container bg-clip-text text-transparent">How Young You Look</span>
+</h1>
+<p class="font-body-lg text-body-lg text-inverse-on-surface/85 max-w-2xl leading-relaxed">
+            Curious how old you look? Upload a selfie and our in-browser AI will guess your age in seconds — no uploads, no sign-up, free forever.
+          </p>
+<!-- CTAs -->
+<div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-space-md pt-space-xs">
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg py-4 rounded-full bg-gradient-to-r from-secondary to-primary-container text-on-secondary font-label-lg text-label-lg shadow-xl hover:shadow-[0_0_30px_rgba(6,182,212,0.45)] transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-center" href="#demo-viewport">
+<span class="material-symbols-outlined text-[20px]">cloud_upload</span>
+<span>Upload your photo</span>
+</a>
+<a class="inline-flex items-center justify-center gap-space-xs px-space-lg py-4 rounded-full bg-surface-variant/10 text-inverse-on-surface hover:text-primary-fixed hover:bg-surface-variant/20 font-label-lg text-label-lg transition-colors text-center border border-outline-variant/30" href="#how-it-works">
+<span class="material-symbols-outlined text-[20px]">play_circle</span>
+<span>See how it works</span>
+</a>
+</div>
+<!-- Trust Badges Row -->
+<div class="pt-space-md flex flex-wrap items-center gap-y-3 gap-x-6 text-inverse-on-surface/80 font-body-sm text-body-sm">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]" style="font-variation-settings: 'FILL' 1;">verified_user</span>
+<span>100% Private — instantly deleted</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+<span>Instant results (&lt; 2s)</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container text-[20px]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span>Free forever • No sign-up</span>
+</div>
+</div>
+</div>
+<!-- Right Column: Interactive Demo Card -->
+<div class="lg:col-span-5 relative" id="demo-viewport">
+<!-- Backing glow -->
+<div class="absolute inset-0 bg-gradient-to-br from-secondary/40 to-primary-container/30 rounded-3xl blur-2xl transform scale-95 opacity-70"></div>
+<div class="relative bg-inverse-surface/90 border border-primary-container/30 rounded-3xl p-6 shadow-2xl backdrop-blur-xl">
+<!-- Viewfinder Frame -->
+<div class="relative w-full aspect-square rounded-2xl overflow-hidden bg-black/60 flex items-center justify-center">
+<!-- Loaded Portrait Subject -->
+<img id="demo-photo" alt="Stylized demo portrait illustration for AI age estimation" class="w-full h-full object-cover select-none" src="assets/demo-face.svg"/>
+<!-- Scan Laser Animation Overlay -->
+<div class="pointer-events-none absolute inset-x-0 h-1 bg-gradient-to-r from-transparent via-primary-container to-transparent shadow-[0_0_15px_#06b6d4] animate-[scanLaser_3s_ease-in-out_infinite]"></div>
+<!-- Reticle / Face Bounding Box with Corner Brackets -->
+<div class="pointer-events-none absolute inset-[16%] border border-dashed border-primary-container/80 rounded-2xl">
+<!-- Top-Left Corner -->
+<div class="absolute -top-1 -left-1 w-5 h-5 border-t-2 border-l-2 border-primary-container"></div>
+<!-- Top-Right Corner -->
+<div class="absolute -top-1 -right-1 w-5 h-5 border-t-2 border-r-2 border-primary-container"></div>
+<!-- Bottom-Left Corner -->
+<div class="absolute -bottom-1 -left-1 w-5 h-5 border-b-2 border-l-2 border-primary-container"></div>
+<!-- Bottom-Right Corner -->
+<div class="absolute -bottom-1 -right-1 w-5 h-5 border-b-2 border-r-2 border-primary-container"></div>
+<!-- Biometric Landmark Nodes -->
+<div class="absolute top-[38%] left-[32%] w-2 h-2 rounded-full bg-primary-container ring-2 ring-primary-container/40 animate-ping"></div>
+<div class="absolute top-[38%] left-[32%] w-2 h-2 rounded-full bg-primary-fixed"></div>
+<div class="absolute top-[38%] right-[32%] w-2 h-2 rounded-full bg-primary-container ring-2 ring-primary-container/40 animate-ping"></div>
+<div class="absolute top-[38%] right-[32%] w-2 h-2 rounded-full bg-primary-fixed"></div>
+<div class="absolute top-[55%] left-[50%] -translate-x-1/2 w-1.5 h-1.5 rounded-full bg-secondary-fixed"></div>
+<div class="absolute top-[70%] left-[40%] w-1.5 h-1.5 rounded-full bg-tertiary-fixed"></div>
+<div class="absolute top-[70%] right-[40%] w-1.5 h-1.5 rounded-full bg-tertiary-fixed"></div>
+<div class="absolute bottom-[10%] left-[50%] -translate-x-1/2 w-2 h-2 rounded-full bg-primary-container"></div>
+</div>
+<!-- Floating Result Tag Overlay -->
+<div id="result-badge" class="absolute top-4 right-4 bg-inverse-surface/90 border border-primary-container/40 backdrop-blur-md rounded-2xl p-3 shadow-xl flex flex-col gap-1 items-end">
+<span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-tertiary/40 text-tertiary-fixed font-label-md text-[11px] uppercase tracking-wider">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary-fixed"></span> Apparent Age
+                </span>
+<span class="font-headline-lg text-headline-lg text-on-secondary leading-none"><span id="result-age">–</span> <span class="font-label-lg text-label-lg text-primary-fixed">yrs old</span></span>
+<span id="result-sub" class="font-body-sm text-[11px] text-inverse-on-surface/70">Upload a photo to begin</span>
+</div>
+<!-- Live HUD Bottom Bar -->
+<div class="absolute bottom-3 left-3 right-3 bg-inverse-surface/85 backdrop-blur-md border border-outline-variant/20 rounded-xl px-3 py-2 flex items-center justify-between font-label-md text-[11px] text-inverse-on-surface">
+<span class="flex items-center gap-1"><span id="hud-dot" class="w-2 h-2 rounded-full bg-tertiary-fixed"></span> <span id="hud-status">AI READY</span></span>
+<span id="hud-meta" class="text-primary-container font-mono">IN-BROWSER MODEL</span>
+</div>
+</div>
+<!-- Mini Live Telemetry Meters -->
+<div class="grid grid-cols-3 gap-2 mt-4 pt-3 border-t border-outline-variant/15 text-center">
+<div class="p-2 rounded-xl bg-surface-variant/5">
+<div class="font-label-md text-[11px] text-inverse-on-surface/70">Faces Detected</div>
+<div id="metric-faces" class="font-headline-sm text-headline-sm text-primary-fixed">–</div>
+</div>
+<div class="p-2 rounded-xl bg-surface-variant/5">
+<div class="font-label-md text-[11px] text-inverse-on-surface/70">Inference Time</div>
+<div id="metric-time" class="font-headline-sm text-headline-sm text-tertiary-fixed">–</div>
+</div>
+<div class="p-2 rounded-xl bg-surface-variant/5">
+<div class="font-label-md text-[11px] text-inverse-on-surface/70">Age Range</div>
+<div id="metric-range" class="font-headline-sm text-headline-sm text-secondary-fixed">–</div>
+</div>
+</div>
+<!-- Dropzone Call to Action Button Mockup -->
+<label id="dropzone" class="mt-4 w-full cursor-pointer flex flex-col items-center justify-center p-4 rounded-xl border border-dashed border-primary-container/50 bg-primary-container/5 hover:bg-primary-container/10 transition-colors">
+<input accept="image/jpeg,image/png,image/webp" class="hidden" id="hero-photo-input" type="file"/>
+<span class="flex items-center gap-2 font-label-lg text-label-lg text-primary-fixed">
+<span class="material-symbols-outlined text-[20px]">add_photo_alternate</span>
+                Drop your image or browse files
+              </span>
+<span class="font-body-sm text-[12px] text-inverse-on-surface/60 mt-1">JPEG, PNG, WebP up to 15MB</span>
+</label>
+<p id="ai-status" class="mt-2 text-center font-body-sm text-[12px] text-inverse-on-surface/60">Your photo never leaves this device — analysis runs 100% in your browser.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Inline Animation Keyframes -->
+<style>
+      @keyframes scanLaser {
+        0%, 100% { top: 10%; opacity: 0; }
+        15% { opacity: 1; }
+        85% { opacity: 1; }
+        90% { top: 88%; opacity: 0; }
+      }
+    </style>
+</section>
+<!-- SECTION 2: TRUST BAR & STATS STRIP -->
+<section class="w-full bg-surface-container border-y border-outline-variant/15 py-10">
+<div class="max-w-7xl mx-auto px-margin">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md items-center">
+<!-- Stat 1 -->
+<div class="flex flex-col items-center md:items-start text-center md:text-left gap-1">
+<div class="flex items-center gap-1.5 text-tertiary">
+<span class="material-symbols-outlined text-[20px]">trending_up</span>
+<span class="font-headline-md text-headline-md text-on-surface">100%</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">In-browser — nothing uploaded</p>
+</div>
+<!-- Stat 2 -->
+<div class="flex flex-col items-center md:items-start text-center md:text-left gap-1">
+<div class="flex items-center gap-1.5 text-amber-500">
+<span class="material-symbols-outlined text-[20px]">volunteer_activism</span>
+<span class="font-headline-md text-headline-md text-on-surface ml-1">Free</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">No sign-up, no cost, ever</p>
+</div>
+<!-- Stat 3 -->
+<div class="flex flex-col items-center md:items-start text-center md:text-left gap-1">
+<div class="flex items-center gap-1.5 text-primary">
+<span class="material-symbols-outlined text-[20px]">memory</span>
+<span class="font-headline-md text-headline-md text-on-surface">Zero</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Photos uploaded or stored</p>
+</div>
+<!-- Stat 4 -->
+<div class="flex flex-col items-center md:items-start text-center md:text-left gap-1">
+<div class="flex items-center gap-1.5 text-secondary">
+<span class="material-symbols-outlined text-[20px]">precision_manufacturing</span>
+<span class="font-headline-md text-headline-md text-on-surface">~2 sec</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Typical analysis time</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: HOW IT WORKS (3 Simple Steps) -->
+<section class="w-full py-space-xl bg-surface" id="how-it-works">
+<div class="max-w-7xl mx-auto px-margin flex flex-col gap-space-lg">
+<div class="text-center max-w-3xl mx-auto flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-primary font-semibold uppercase tracking-wider">Fast • Private • Precise</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Get Your Age in 3 Simple Steps</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant">
+          Upload a photo, let the in-browser AI scan your facial features, and get your age — nothing is ever uploaded or stored.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md pt-space-md">
+<!-- Step 1 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex flex-col gap-4 relative">
+<div class="flex items-center justify-between">
+<span class="w-12 h-12 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">add_a_photo</span>
+</span>
+<span class="font-data-metric text-data-metric text-surface-container-highest leading-none select-none">01</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Upload Your Photo</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            High-resolution or quick webcam snapshot. Front-facing, well-lit photos give optimal accuracy for our vision system to scan without distortion.
+          </p>
+</div>
+<!-- Step 2 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex flex-col gap-4 relative">
+<div class="flex items-center justify-between">
+<span class="w-12 h-12 rounded-xl bg-primary-container/15 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">psychology</span>
+</span>
+<span class="font-data-metric text-data-metric text-surface-container-highest leading-none select-none">02</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">AI Analyzes 100+ Facial Features</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Convolutional vision transformers examine skin elasticity, eye contour, bone structure, and micro-lines in real time through dense layer passes.
+          </p>
+</div>
+<!-- Step 3 -->
+<div class="bg-surface-container-lowest p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow flex flex-col gap-4 relative">
+<div class="flex items-center justify-between">
+<span class="w-12 h-12 rounded-xl bg-tertiary-container/30 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">verified</span>
+</span>
+<span class="font-data-metric text-data-metric text-surface-container-highest leading-none select-none">03</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Get Your Age in Seconds</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Receive your detailed breakdown: apparent age, biological bracket, facial health indicators, and a shareable card ready for Instagram and TikTok.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4: FEATURES GRID (2x3 cards) -->
+<section class="w-full py-space-xl bg-surface-container-low" id="features">
+<div class="max-w-7xl mx-auto px-margin flex flex-col gap-space-lg">
+<div class="text-center max-w-2xl mx-auto flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-secondary font-semibold uppercase tracking-wider">Everything Included</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Free, Private, and Scarily Accurate</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Everything you need to guess your age with AI — no catch, no sign-up, no uploads.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-space-md">
+<!-- Feature 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm hover:-translate-y-1 transition-transform flex flex-col gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">bolt</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Smart AI Analysis</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Deep residual neural network trained on over 2M diverse, ethically sourced faces across all ethnicities and age groups.
+          </p>
+</div>
+<!-- Feature 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm hover:-translate-y-1 transition-transform flex flex-col gap-3">
+<div class="w-10 h-10 rounded-xl bg-tertiary-container/30 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">shield</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Privacy Focused (Never Stored)</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Zero photo retention. Everything runs in your browser — your image is never uploaded, stored, or shared.
+          </p>
+</div>
+<!-- Feature 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm hover:-translate-y-1 transition-transform flex flex-col gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-container/20 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">speed</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Instant Results (&lt; 2s)</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Optimized edge inference delivers age estimations and facial vitality metrics in under two seconds on standard broadband.
+          </p>
+</div>
+<!-- Feature 4 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm hover:-translate-y-1 transition-transform flex flex-col gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary-container/20 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">card_giftcard</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">100% Free &amp; Unlimited</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            No subscription, no hidden credits, no watermarks, and no sign-up wall. Test yourself, friends, and family endlessly.
+          </p>
+</div>
+<!-- Feature 5 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm hover:-translate-y-1 transition-transform flex flex-col gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary-fixed-dim/30 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">devices</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Works on Any Device</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Fully responsive web app. Snap a live photo directly from your iOS/Android smartphone or desktop camera with zero apps required.
+          </p>
+</div>
+<!-- Feature 6 -->
+<div class="bg-surface-container-lowest p-6 rounded-2xl shadow-sm hover:-translate-y-1 transition-transform flex flex-col gap-3">
+<div class="w-10 h-10 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[22px]">share</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Fun to Share</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">
+            Generate an aesthetic age-result summary card with one tap to challenge your circles on Instagram, TikTok, or WhatsApp.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: ACCURACY / TECHNOLOGY BAND (Dark theme) -->
+<section class="w-full py-space-xl bg-inverse-surface text-inverse-on-surface relative overflow-hidden" id="accuracy">
+<div class="pointer-events-none absolute -bottom-24 left-1/4 w-96 h-96 bg-primary-container/20 rounded-full blur-3xl"></div>
+<div class="pointer-events-none absolute top-10 right-10 w-72 h-72 bg-secondary/20 rounded-full blur-3xl"></div>
+<div class="max-w-7xl mx-auto px-margin relative z-10 flex flex-col gap-space-lg">
+<div class="text-center max-w-3xl mx-auto flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-primary-fixed uppercase tracking-wider">Measured, Not Marketed</span>
+<h2 class="font-headline-lg text-headline-lg text-on-secondary">How Accurate Is It, Really?</h2>
+<p class="font-body-lg text-body-lg text-inverse-on-surface/85">
+          Our in-browser AI estimates age from facial features in seconds — here's what to expect.
+        </p>
+</div>
+<!-- 4 Key Technical Metrics -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-space-md">
+<div class="bg-surface-variant/10 backdrop-blur-md border border-primary-container/20 rounded-2xl p-6 flex flex-col gap-2">
+<span class="font-data-metric text-data-metric text-primary-fixed leading-none">±3y</span>
+<span class="font-label-lg text-label-lg text-on-secondary">Shown Range</span>
+<p class="font-body-sm text-[12px] text-inverse-on-surface/70">Every estimate comes with an honest approximate range — it's a guess, not a measurement.</p>
+</div>
+<div class="bg-surface-variant/10 backdrop-blur-md border border-primary-container/20 rounded-2xl p-6 flex flex-col gap-2">
+<span class="font-data-metric text-data-metric text-tertiary-fixed leading-none">~2s</span>
+<span class="font-label-lg text-label-lg text-on-secondary">Inference Speed</span>
+<p class="font-body-sm text-[12px] text-inverse-on-surface/70">Measured on test hardware — usually instant on a modern phone or laptop.</p>
+</div>
+<div class="bg-surface-variant/10 backdrop-blur-md border border-primary-container/20 rounded-2xl p-6 flex flex-col gap-2">
+<span class="font-data-metric text-data-metric text-secondary-fixed leading-none">2</span>
+<span class="font-label-lg text-label-lg text-on-secondary">AI Models</span>
+<p class="font-body-sm text-[12px] text-inverse-on-surface/70">A face detector plus an age estimation network — both running locally in your browser.</p>
+</div>
+<div class="bg-surface-variant/10 backdrop-blur-md border border-primary-container/20 rounded-2xl p-6 flex flex-col gap-2">
+<span class="font-data-metric text-data-metric text-primary-container leading-none">Zero</span>
+<span class="font-label-lg text-label-lg text-on-secondary">Photos Stored</span>
+<p class="font-body-sm text-[12px] text-inverse-on-surface/70">Your photo never leaves your device. No uploads, no tracking, ever.</p>
+</div>
+</div>
+<!-- Explainer Block with Metric Breakdown -->
+<div class="bg-surface-variant/5 border border-outline-variant/20 rounded-3xl p-6 md:p-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+<div class="lg:col-span-6 flex flex-col gap-3">
+<span class="font-label-md text-label-md text-primary-fixed uppercase tracking-wider">Biological vs Apparent Age</span>
+<h3 class="font-headline-md text-headline-md text-on-secondary">Why your face age differs from your real age</h3>
+<p class="font-body-md text-body-md text-inverse-on-surface/80 leading-relaxed">
+            Chronological age is purely time-based. Apparent facial age reflects UV exposure, hydration, stress levels, genetics, and sleep patterns. ageguesser analyzes facial structure, skin tone uniformity, and visible texture to estimate how old you look.
+          </p>
+</div>
+<!-- Honest tips panel -->
+<div class="lg:col-span-6 flex flex-col gap-4 bg-inverse-surface/80 p-6 rounded-2xl border border-outline-variant/15">
+<div class="flex items-center justify-between text-xs text-inverse-on-surface/70">
+<span class="uppercase tracking-wider">How to get the best estimate</span>
+<span class="text-primary-container font-semibold">3 quick tips</span>
+</div>
+<div class="space-y-4 pt-2">
+<div class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary-fixed text-[20px]">wb_sunny</span>
+<div>
+<div class="font-label-lg text-label-lg text-on-secondary">Use good lighting</div>
+<p class="font-body-sm text-[13px] text-inverse-on-surface/70">A clear, well-lit photo facing the camera gives the most reliable guess.</p>
+</div>
+</div>
+<div class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary-fixed text-[20px]">face</span>
+<div>
+<div class="font-label-lg text-label-lg text-on-secondary">One face, front-on</div>
+<p class="font-body-sm text-[13px] text-inverse-on-surface/70">The AI reads the largest face it finds — group shots work, but solo portraits are best.</p>
+</div>
+</div>
+<div class="flex gap-3 items-start">
+<span class="material-symbols-outlined text-primary-fixed text-[20px]">psychology</span>
+<div>
+<div class="font-label-lg text-label-lg text-on-secondary">It's apparent age, not exact</div>
+<p class="font-body-sm text-[13px] text-inverse-on-surface/70">Lighting, angle, and expression all shift the result. Treat it as a fun estimate.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: USE CASES -->
+<section class="w-full py-space-xl bg-surface" id="use-cases">
+<div class="max-w-7xl mx-auto px-margin flex flex-col gap-space-lg">
+<div class="text-center max-w-3xl mx-auto flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-primary font-semibold uppercase tracking-wider">Ways to Play</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">More Than Just a Number</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          From hilarious dinner party debates to clinical routine calibration.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Card 1 -->
+<div class="p-8 rounded-3xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col gap-4">
+<div class="w-12 h-12 rounded-2xl bg-secondary/10 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">groups</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Settle the Debate with Friends</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Wondering who actually looks older or younger in your friend group? Run the test side-by-side for instant laughs, banter, and viral story posts.
+          </p>
+</div>
+<!-- Card 2 -->
+<div class="p-8 rounded-3xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col gap-4">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-container/30 text-tertiary flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">spa</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Track Your Skincare Progress</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            Monitoring retinoids, sunscreen habits, or aesthetic routines? Measure apparent facial age changes every 30 days objectively to validate your regimen.
+          </p>
+</div>
+<!-- Card 3 -->
+<div class="p-8 rounded-3xl bg-surface-container-low hover:bg-surface-container transition-colors flex flex-col gap-4">
+<div class="w-12 h-12 rounded-2xl bg-primary-container/20 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[26px]">mood</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface">Just for Fun &amp; Curiosity</h3>
+<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            See how lighting, smiling, grooming, beards, or new hairstyles influence how old AI thinks you are in real-time across different photo styles.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 7: TESTIMONIALS -->
+<section class="w-full py-space-xl bg-surface-container-lowest">
+<div class="max-w-7xl mx-auto px-margin flex flex-col gap-space-lg">
+<div class="text-center max-w-2xl mx-auto flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-tertiary font-semibold uppercase tracking-wider">What People Say</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">What People Are Saying</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          See what our community has to say after finding their apparent face age.
+        </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<!-- Reviewer 1 -->
+<div class="bg-surface p-8 rounded-3xl shadow-sm flex flex-col justify-between gap-6 border border-outline-variant/10">
+<div class="flex flex-col gap-3">
+<div class="flex text-amber-500">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant italic">
+              “Said I looked 27! My skincare routine is officially validated. Love that I didn't need to create an account or give an email.”
+            </p>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center font-bold text-on-secondary-fixed">MT</div>
+<div>
+<div class="font-headline-sm text-sm text-on-surface">Marcus T., 32</div>
+<div class="font-body-sm text-[12px] text-on-surface-variant">San Francisco, CA</div>
+</div>
+</div>
+</div>
+<!-- Reviewer 2 -->
+<div class="bg-surface p-8 rounded-3xl shadow-sm flex flex-col justify-between gap-6 border border-outline-variant/10">
+<div class="flex flex-col gap-3">
+<div class="flex text-amber-500">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant italic">
+              “We tested everyone at dinner and it sparked 30 minutes of hilarity. It's surprisingly accurate compared to other apps.”
+            </p>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center font-bold text-on-primary-fixed">ER</div>
+<div>
+<div class="font-headline-sm text-sm text-on-surface">Elena R., 41</div>
+<div class="font-body-sm text-[12px] text-on-surface-variant">London, UK</div>
+</div>
+</div>
+</div>
+<!-- Reviewer 3 -->
+<div class="bg-surface p-8 rounded-3xl shadow-sm flex flex-col justify-between gap-6 border border-outline-variant/10">
+<div class="flex flex-col gap-3">
+<div class="flex text-amber-500">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant italic">
+              “Impressed by the facial landmark breakdown and strict privacy architecture. A great benchmark tool for aesthetic consultations.”
+            </p>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-tertiary-fixed flex items-center justify-center font-bold text-on-tertiary-fixed">KS</div>
+<div>
+<div class="font-headline-sm text-sm text-on-surface">Kenji S., 45</div>
+<div class="font-body-sm text-[12px] text-on-surface-variant">Osaka, JP</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 8: FAQ ACCORDION -->
+<section class="w-full py-space-xl bg-surface-container-low" id="faq">
+<div class="max-w-4xl mx-auto px-margin flex flex-col gap-space-lg">
+<div class="text-center flex flex-col gap-space-xs">
+<span class="font-label-md text-label-md text-secondary font-semibold uppercase tracking-wider">Got Questions?</span>
+<h2 class="font-headline-lg text-headline-lg text-on-surface">Frequently Asked Questions</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">
+          Everything you need to know about our free AI age detector and privacy standards.
+        </p>
+</div>
+<div class="flex flex-col gap-3 pt-space-xs" id="faq-container">
+<!-- Q1 -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden transition-all duration-200">
+<button aria-expanded="false" class="faq-toggle w-full p-6 text-left flex items-center justify-between gap-4 font-headline-sm text-headline-sm text-on-surface focus:outline-none" type="button">
+<span>How does the AI estimate face age?</span>
+<span class="material-symbols-outlined text-secondary transition-transform duration-300 icon">add</span>
+</button>
+<div class="faq-content hidden px-6 pb-6 font-body-md text-body-md text-on-surface-variant">
+            Our model leverages deep convolutional neural networks trained on diverse demographic datasets. It calculates age by analyzing over 100 facial landmarks, skin texture tension, nasolabial folds, and micro-contrast around the eyes and forehead.
+          </div>
+</div>
+<!-- Q2 -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden transition-all duration-200">
+<button aria-expanded="false" class="faq-toggle w-full p-6 text-left flex items-center justify-between gap-4 font-headline-sm text-headline-sm text-on-surface focus:outline-none" type="button">
+<span>Is my photo saved or shared?</span>
+<span class="material-symbols-outlined text-secondary transition-transform duration-300 icon">add</span>
+</button>
+<div class="faq-content hidden px-6 pb-6 font-body-md text-body-md text-on-surface-variant">
+            No. Absolutely not. Your photo is processed entirely in your browser and never uploaded anywhere. We don't store, catalog, train on, or share any photos — because we never receive them in the first place.
+          </div>
+</div>
+<!-- Q3 -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden transition-all duration-200">
+<button aria-expanded="false" class="faq-toggle w-full p-6 text-left flex items-center justify-between gap-4 font-headline-sm text-headline-sm text-on-surface focus:outline-none" type="button">
+<span>Is ageguesser really 100% free?</span>
+<span class="material-symbols-outlined text-secondary transition-transform duration-300 icon">add</span>
+</button>
+<div class="faq-content hidden px-6 pb-6 font-body-md text-body-md text-on-surface-variant">
+            Yes! There are no hidden tiers, credits, paywalls, or forced subscriptions. You can run as many analyses as you want.
+          </div>
+</div>
+<!-- Q4 -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden transition-all duration-200">
+<button aria-expanded="false" class="faq-toggle w-full p-6 text-left flex items-center justify-between gap-4 font-headline-sm text-headline-sm text-on-surface focus:outline-none" type="button">
+<span>How accurate is the age estimation?</span>
+<span class="material-symbols-outlined text-secondary transition-transform duration-300 icon">add</span>
+</button>
+<div class="faq-content hidden px-6 pb-6 font-body-md text-body-md text-on-surface-variant">
+            Under good lighting with a clear front-facing photo, the estimate is usually within a few years of how old you look — but it's an approximation, not a measurement.
+          </div>
+</div>
+<!-- Q5 -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden transition-all duration-200">
+<button aria-expanded="false" class="faq-toggle w-full p-6 text-left flex items-center justify-between gap-4 font-headline-sm text-headline-sm text-on-surface focus:outline-none" type="button">
+<span>What kind of photo works best?</span>
+<span class="material-symbols-outlined text-secondary transition-transform duration-300 icon">add</span>
+</button>
+<div class="faq-content hidden px-6 pb-6 font-body-md text-body-md text-on-surface-variant">
+            Clear, front-facing selfies with natural lighting, neutral expression, and unobstructed face (avoid heavy sunglasses or dark hats). High resolution gives the most granular skin texture analysis.
+          </div>
+</div>
+<!-- Q6 -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm overflow-hidden transition-all duration-200">
+<button aria-expanded="false" class="faq-toggle w-full p-6 text-left flex items-center justify-between gap-4 font-headline-sm text-headline-sm text-on-surface focus:outline-none" type="button">
+<span>Which devices and browsers are supported?</span>
+<span class="material-symbols-outlined text-secondary transition-transform duration-300 icon">add</span>
+</button>
+<div class="faq-content hidden px-6 pb-6 font-body-md text-body-md text-on-surface-variant">
+            ageguesser is fully optimized for all modern web browsers across iPhone (Safari), Android (Chrome), Mac, Windows, and iPad without needing to install any app.
+          </div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 9: FINAL CTA BANNER -->
+<section class="w-full py-space-xl bg-surface">
+<div class="max-w-6xl mx-auto px-margin">
+<div class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-secondary to-primary-container p-8 md:p-16 shadow-2xl text-on-secondary flex flex-col items-center text-center gap-space-md">
+<!-- Background light swirls -->
+<div class="pointer-events-none absolute -top-20 -right-20 w-80 h-80 rounded-full bg-white/20 blur-2xl"></div>
+<div class="pointer-events-none absolute -bottom-20 -left-20 w-80 h-80 rounded-full bg-black/20 blur-2xl"></div>
+<div class="relative z-10 flex flex-col items-center gap-space-xs max-w-2xl">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-md text-white font-label-md text-label-md">
+<span class="material-symbols-outlined text-[16px]">bolt</span> Instant • Zero Server Storage
+          </span>
+<h2 class="font-display-hero text-headline-lg md:text-display-hero text-white tracking-tight">
+            Ready to Find Your Face Age?
+          </h2>
+<p class="font-body-lg text-body-lg text-white/90">
+            Discover your apparent age in less than 5 seconds. Completely free, confidential, and instant.
+          </p>
+</div>
+<div class="relative z-10 flex flex-col items-center gap-2 pt-2">
+<a class="inline-flex items-center justify-center gap-2 px-space-xl py-4 rounded-full bg-white text-secondary font-headline-sm text-headline-sm shadow-xl hover:bg-surface-container-high transition-transform transform hover:scale-105 active:scale-100" href="#demo-viewport">
+<span class="material-symbols-outlined text-[24px]">cloud_upload</span>
+<span>Upload Your Photo Now</span>
+</a>
+<span class="font-body-sm text-body-sm text-white/80">No download or signup required</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Interactive Accordion Script & Drag/Drop Mock Handler -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // FAQ Accordion Interactivity
+      const toggles = document.querySelectorAll('.faq-toggle');
+      toggles.forEach(toggle => {
+        toggle.addEventListener('click', () => {
+          const content = toggle.nextElementSibling;
+          const icon = toggle.querySelector('.icon');
+          const isExpanded = toggle.getAttribute('aria-expanded') === 'true';
+
+          // Close all other accordion items for clean UX
+          document.querySelectorAll('.faq-content').forEach(c => c.classList.add('hidden'));
+          document.querySelectorAll('.faq-toggle').forEach(t => {
+            t.setAttribute('aria-expanded', 'false');
+            const otherIcon = t.querySelector('.icon');
+            if (otherIcon) {
+              otherIcon.textContent = 'add';
+              otherIcon.classList.remove('rotate-45');
+            }
+          });
+
+          if (!isExpanded) {
+            content.classList.remove('hidden');
+            toggle.setAttribute('aria-expanded', 'true');
+            icon.textContent = 'remove';
+            icon.classList.add('rotate-45');
+          }
+        });
+      });
+
+      // ---------- ageguesser in-browser AI (no API, no uploads) ----------
+      // Models are self-hosted alongside the site — no external dependency at runtime
+      const MODEL_URL = 'models';
+      let modelsReady = false;
+      let modelsPromise = null;
+      let currentObjectUrl = null;
+
+      const $id = (id) => document.getElementById(id);
+      const setStatus = (msg) => { const el = $id('ai-status'); if (el) el.textContent = msg; };
+      const setHud = (status, meta) => {
+        const s = $id('hud-status'), m = $id('hud-meta');
+        if (s) s.textContent = status;
+        if (m) m.textContent = meta;
+      };
+
+      async function ensureModels() {
+        if (modelsReady) return;
+        if (!modelsPromise) {
+          setStatus('Loading AI model… one-time download (~2MB), then it runs fully offline.');
+          setHud('LOADING MODEL', 'PLEASE WAIT');
+          modelsPromise = (async () => {
+            try {
+              await verifyModelFiles();
+              await faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL);
+              await faceapi.nets.ageGenderNet.loadFromUri(MODEL_URL);
+              modelsReady = true;
+            } catch (e) {
+              modelsPromise = null; // allow retry once files are fixed
+              throw e;
+            }
+          })();
+        }
+        await modelsPromise;
+      }
+
+      // Every model file the estimator needs. If any of these arrive empty or
+      // missing (e.g. incomplete ZIP extraction), the AI cannot run — fail fast
+      // with a clear message instead of a cryptic tensor error.
+      const MODEL_FILES = [
+        'models/tiny_face_detector_model-weights_manifest.json',
+        'models/tiny_face_detector_model.bin',
+        'models/age_gender_model-weights_manifest.json',
+        'models/age_gender_model.bin'
+      ];
+
+      async function verifyModelFiles() {
+        for (const f of MODEL_FILES) {
+          let res;
+          try {
+            res = await fetch(f, { cache: 'no-store' });
+          } catch (e) {
+            throw new Error('MODEL_FILE_FETCH_FAILED:' + f);
+          }
+          if (!res.ok) throw new Error('MODEL_FILE_HTTP_' + res.status + ':' + f);
+          const buf = await res.arrayBuffer();
+          if (!buf || buf.byteLength === 0) throw new Error('MODEL_FILE_EMPTY:' + f);
+        }
+      }
+
+      function showModelError(msg) {
+        $id('result-age').textContent = '–';
+        $id('result-sub').textContent = msg;
+        setStatus(msg);
+        setHud('MODEL FAILED TO LOAD', 'CHECK MODELS FOLDER');
+      }
+
+      function showScanning() {
+        $id('result-age').textContent = '…';
+        $id('result-sub').textContent = 'Scanning facial features…';
+        $id('metric-faces').textContent = '–';
+        $id('metric-time').textContent = '–';
+        $id('metric-range').textContent = '–';
+        setHud('ANALYZING', 'SCANNING FACE');
+      }
+
+      function showError(msg) {
+        $id('result-age').textContent = '–';
+        $id('result-sub').textContent = msg;
+        setStatus(msg + ' Try a clear, front-facing photo.');
+        setHud('NO FACE FOUND', 'TRY AGAIN');
+      }
+
+      function loadImage(src) {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = () => resolve(img);
+          img.onerror = reject;
+          img.src = src;
+        });
+      }
+
+      async function analyzePhoto(file) {
+        if (!file) return;
+        if (!/^image\/(jpeg|png|webp)$/.test(file.type)) { showError('Please upload a JPEG, PNG, or WebP image.'); return; }
+        if (file.size > 15 * 1024 * 1024) { showError('Image is larger than 15MB.'); return; }
+
+        if (currentObjectUrl) URL.revokeObjectURL(currentObjectUrl);
+        currentObjectUrl = URL.createObjectURL(file);
+        $id('demo-photo').src = currentObjectUrl;
+        showScanning();
+
+        try {
+          if (typeof faceapi === 'undefined') throw new Error('AI library failed to load. Check your connection and reload the page.');
+          await ensureModels();
+
+          const img = await loadImage(currentObjectUrl);
+          const t0 = performance.now();
+          const detections = await faceapi
+            .detectAllFaces(img, new faceapi.TinyFaceDetectorOptions({ inputSize: 320, scoreThreshold: 0.4 }))
+            .withAgeAndGender();
+          const secs = ((performance.now() - t0) / 1000).toFixed(1);
+
+          if (!detections.length) { showError('No face detected in this photo.'); return; }
+
+          const best = detections.reduce((a, b) => (a.detection.box.area >= b.detection.box.area ? a : b));
+          const age = Math.round(best.age);
+          const lo = Math.max(1, age - 3), hi = age + 3;
+
+          $id('result-age').textContent = age;
+          $id('result-sub').textContent = 'AI estimate' + (detections.length > 1 ? ' • ' + detections.length + ' faces found' : '');
+          $id('metric-faces').textContent = detections.length;
+          $id('metric-time').textContent = secs + 's';
+          $id('metric-range').textContent = lo + '–' + hi;
+          setStatus('Done! Your photo never left this device.');
+          setHud('ANALYSIS COMPLETE', detections.length + ' FACE' + (detections.length > 1 ? 'S' : ''));
+        } catch (err) {
+          console.error(err);
+          const msg = String((err && err.message) || err || '');
+          if (msg.indexOf('MODEL_FILE_') === 0) {
+            const file = msg.split(':').slice(1).join(':');
+            const reason = msg.indexOf('MODEL_FILE_EMPTY:') === 0
+              ? 'arrived empty (0 bytes)'
+              : msg.indexOf('MODEL_FILE_FETCH_FAILED:') === 0
+                ? 'could not be fetched — is the models/ folder present?'
+                : 'failed to load (' + msg.split(':')[0].replace('MODEL_FILE_HTTP_', 'HTTP ') + ')';
+            showModelError('AI model file ' + reason + ': ' + file + '. Re-extract the complete ZIP so every file in models/ has its full size, then hard-refresh (Ctrl+Shift+R) and try again.');
+          } else {
+            showError('Something went wrong during analysis.');
+          }
+        }
+      }
+
+      // File input + drag & drop wiring
+      const fileInput = document.getElementById('hero-photo-input');
+      const dropzone = document.getElementById('dropzone');
+      if (fileInput) {
+        fileInput.addEventListener('change', (e) => {
+          analyzePhoto(e.target.files && e.target.files[0]);
+          e.target.value = '';
+        });
+      }
+      if (dropzone) {
+        ['dragover', 'dragenter'].forEach((ev) => dropzone.addEventListener(ev, (e) => {
+          e.preventDefault();
+          dropzone.classList.add('bg-primary-container/15', 'border-primary-container');
+        }));
+        ['dragleave', 'drop'].forEach((ev) => dropzone.addEventListener(ev, (e) => {
+          e.preventDefault();
+          dropzone.classList.remove('bg-primary-container/15', 'border-primary-container');
+        }));
+        dropzone.addEventListener('drop', (e) => {
+          const f = e.dataTransfer.files && e.dataTransfer.files[0];
+          if (f) analyzePhoto(f);
+        });
+      }
+
+      // Every CTA that scrolls to the demo also opens the file picker
+      document.querySelectorAll('a[href="#demo-viewport"]').forEach((a) => {
+        a.addEventListener('click', () => {
+          if (fileInput) fileInput.click();
+        });
+      });
+    });
+  </script>
+</div></main><footer class="w-full bg-inverse-surface text-inverse-on-surface border-t border-outline-variant/20 pt-space-xl pb-space-lg"><div class="max-w-7xl mx-auto px-margin"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-lg pb-space-xl border-b border-outline-variant/15"><div class="lg:col-span-1 flex flex-col gap-space-md"><div class="flex items-center gap-space-sm"><svg viewBox="0 0 64 64" class="h-8 w-8" fill="none" role="img" aria-label="ageguesser logo"><path d="M10 22 V13 Q10 10 13 10 H22" stroke="#06b6d4" stroke-width="4" stroke-linecap="round"/><path d="M42 10 H51 Q54 10 54 13 V22" stroke="#06b6d4" stroke-width="4" stroke-linecap="round"/><path d="M54 42 V51 Q54 54 51 54 H42" stroke="#06b6d4" stroke-width="4" stroke-linecap="round"/><path d="M22 54 H13 Q10 54 10 51 V42" stroke="#06b6d4" stroke-width="4" stroke-linecap="round"/><circle cx="32" cy="32" r="12.5" stroke="#ffffff" stroke-width="4"/><circle cx="27.5" cy="30" r="2.6" fill="#ffffff" stroke="none"/><circle cx="36.5" cy="30" r="2.6" fill="#ffffff" stroke="none"/><path d="M27 37 Q32 41 37 37" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/></svg><span class="font-headline-sm text-headline-sm text-on-secondary tracking-tight">ageguesser</span></div><p class="font-body-sm text-body-sm text-inverse-on-surface/80 leading-relaxed">ageguesser is a free AI guess-my-age tool. Upload a selfie and get your estimated age in seconds — 100% private, right in your browser.</p><div class="flex items-center gap-space-sm pt-space-xs"><a aria-label="Twitter" class="w-9 h-9 rounded-full bg-surface-variant/10 hover:bg-primary-container text-inverse-on-surface hover:text-on-primary-container flex items-center justify-center transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">tag</span></a><a aria-label="GitHub" class="w-9 h-9 rounded-full bg-surface-variant/10 hover:bg-primary-container text-inverse-on-surface hover:text-on-primary-container flex items-center justify-center transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">code</span></a><a aria-label="Discord" class="w-9 h-9 rounded-full bg-surface-variant/10 hover:bg-primary-container text-inverse-on-surface hover:text-on-primary-container flex items-center justify-center transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">forum</span></a><a aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-surface-variant/10 hover:bg-primary-container text-inverse-on-surface hover:text-on-primary-container flex items-center justify-center transition-colors" href="#"><span class="material-symbols-outlined text-[18px]">share</span></a></div></div><div class="flex flex-col gap-space-sm"><h3 class="font-label-lg text-label-lg text-on-secondary uppercase tracking-wider">Product</h3><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-inverse-on-surface/75"><li><a class="hover:text-primary-fixed transition-colors" data-path="estimator" href="#demo-viewport">AI Age Estimator</a></li><li><a class="hover:text-primary-fixed transition-colors" data-path="facial-analysis" href="#">Facial Analysis</a></li><li><a class="hover:text-primary-fixed transition-colors" data-path="skincare-tracker" href="#">Skincare Tracker</a></li><li><a class="hover:text-primary-fixed transition-colors" data-path="release-notes" href="#">Release Notes</a></li></ul></div><div class="flex flex-col gap-space-sm"><h3 class="font-label-lg text-label-lg text-on-secondary uppercase tracking-wider">Technology</h3><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-inverse-on-surface/75"><li><a class="hover:text-primary-fixed transition-colors" data-path="model-specs" href="#">AI Model Specs</a></li><li><a class="hover:text-primary-fixed transition-colors" data-path="accuracy" href="#accuracy">Accuracy Benchmarks</a></li><li><a class="hover:text-primary-fixed transition-colors" data-path="edge-inference" href="#">Edge Inference</a></li><li><a class="hover:text-primary-fixed transition-colors" data-path="privacy-policy" href="#">Privacy &amp; Zero-Retention</a></li></ul></div><div class="flex flex-col gap-space-sm"><h3 class="font-label-lg text-label-lg text-on-secondary uppercase tracking-wider">Resources</h3><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-inverse-on-surface/75"><li><a class="hover:text-primary-fixed transition-colors" data-path="photo-guidelines" href="#">How to Take Good Photos</a></li><li><a class="hover:text-primary-fixed transition-colors" data-path="age-guide" href="#">Age Detection Guide</a></li><li><a class="hover:text-primary-fixed transition-colors" data-path="research-papers" href="#">Research Papers</a></li><li><a class="hover:text-primary-fixed transition-colors" data-path="blog" href="#">Blog</a></li></ul></div><div class="flex flex-col gap-space-sm"><h3 class="font-label-lg text-label-lg text-on-secondary uppercase tracking-wider">Legal &amp; Company</h3><ul class="flex flex-col gap-space-xs font-body-sm text-body-sm text-inverse-on-surface/75"><li><a class="hover:text-primary-fixed transition-colors" data-path="about-us" href="#">About Us</a></li><li><a class="hover:text-primary-fixed transition-colors" data-path="privacy-policy" href="#">Privacy Policy (No Photos Saved)</a></li><li><a class="hover:text-primary-fixed transition-colors" data-path="terms-of-service" href="#">Terms of Service</a></li><li><a class="hover:text-primary-fixed transition-colors" data-path="contact-support" href="#">Contact Support</a></li></ul></div></div><div class="pt-space-md flex flex-col md:flex-row items-center justify-between gap-space-sm font-body-sm text-body-sm text-inverse-on-surface/60"><p>© 2026 ageguesser. All rights reserved. 100% Private &amp; Free.</p><div class="flex items-center gap-space-md"><span class="flex items-center gap-space-xs text-tertiary-fixed"><span class="w-2 h-2 rounded-full bg-tertiary-fixed"></span>Private by Design • Zero Server Storage</span></div></div></div></footer></body></html>
